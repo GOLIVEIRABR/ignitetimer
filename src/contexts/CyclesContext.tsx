@@ -2,9 +2,9 @@ import { differenceInSeconds } from 'date-fns'
 import {
   createContext,
   ReactNode,
-  useState,
-  useReducer,
   useEffect,
+  useReducer,
+  useState,
 } from 'react'
 import {
   ActionTypes,
@@ -45,13 +45,16 @@ export function CyclesContextProvider({
       cycles: [],
       activeCycleId: null,
     },
-    () => {
+    (initialState) => {
       const storedStateAsJSON = localStorage.getItem(
         '@ignite-timer:cycles-state-1.0.0',
       )
+
       if (storedStateAsJSON) {
         return JSON.parse(storedStateAsJSON)
       }
+
+      return initialState
     },
   )
 
